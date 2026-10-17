@@ -31,9 +31,9 @@ static int ender(t_moni *monitor)
     i = 0;
     while (i < monitor->nb)
     {
-        pthread_mutex_lock(&monitor->coders->mutex);
-        done = (monitor->coders->max_compile <= 0);
-        pthread_mutex_unlock(&monitor->coders->mutex);
+        pthread_mutex_lock(&monitor->coders[i].mutex);
+        done = (monitor->coders[i].max_compile <= 0);
+        pthread_mutex_unlock(&monitor->coders[i].mutex);
         if (!done)
             return (0);
         i++;

@@ -25,14 +25,14 @@ void    debug(t_coder *coder)
 
 void    refrcatinng(t_coder *coder)
 {
-    printlog(coder, "is refracting");
+    printlog(coder, "is refactoring");
     usleep(coder->time_to_refactor * 1000);
 }
 
 void    burnout(t_coder *coder)
 {
     if (coder)
-        printlog(coder, "has burmed out");
+        printlog(coder, "burned out");
     else
         printf("Coder has burned out\n");
 }

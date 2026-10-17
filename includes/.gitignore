@@ -1,2 +1,6 @@
-codexion
+# Object files and build directory
 *.o
+obj/
+
+# Executable
+/codexion

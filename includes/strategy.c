@@ -7,15 +7,24 @@ static int before(t_coder *a, t_coder *b)
     return (a->ticket < b->ticket);
 }
 
+static int  ready(t_dongles *d, t_coder *q)
+{
+    t_dongles   *other;
+
+    other = q->left;
+    if (q->left == d)
+        other = q->right;
+    return (!other->is_taken);
+}
+
 static int is_first(t_dongles *d, t_coder *c)
 {
     int i;
 
     i = 0;
-
     while (i < d->queue_size)
     {
-        if(d->queue[i] != c && before(d->queue[i], c))
+        if (d->queue[i] != c && before(d->queue[i], c) && ready(d, d->queue[i]))
             return (0);
         i++;
     }
@@ -50,7 +59,7 @@ static int can_take(t_coder *c)
 
     now = get_time();
 
-    return (!c->left->is_taken && c->right->is_taken
+    return (!c->left->is_taken && !c->right->is_taken
     && now >= c->left->availabilitytime && now >= c->right->availabilitytime
     && is_first(c->left, c) && is_first(c->right, c));
 }

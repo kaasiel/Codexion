@@ -1,17 +1,6 @@
 #include "codexion.h"
 #include "helper.h"
 
-void push(t_coder *queue, t_coder coder)
-{
-    queue[1] = queue[0];
-    queue[0] = coder;
-}
-
-void pop(t_coder * queue)
-{
-    queue[1] = queue[0];
-}
-
 long    get_time(void)
 {
     struct timeval tv;
